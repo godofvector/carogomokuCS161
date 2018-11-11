@@ -1,0 +1,6 @@
+﻿  MainCode.cpp
+c:\users\windows 10 gamer\source\repos\carogomoku\carogomoku\maincode.cpp(33): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+c:\users\windows 10 gamer\source\repos\carogomoku\carogomoku\maincode.cpp(387): warning C4778: 'printf' : unterminated format string '%\n'
+c:\users\windows 10 gamer\source\repos\carogomoku\carogomoku\maincode.cpp(630): warning C4326: return type of 'main' should be 'int' instead of 'void'
+c:\users\windows 10 gamer\source\repos\carogomoku\carogomoku\maincode.cpp(320): warning C4715: 'CheckBotWin': not all control paths return a value
+  CaroGomoku.vcxproj -> C:\Users\Windows 10 Gamer\source\repos\CaroGomoku\x64\Debug\CaroGomoku.exe
