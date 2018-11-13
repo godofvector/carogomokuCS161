@@ -48,7 +48,6 @@
 	 }
 	 f.close();
 	 //Update file names.txt
-	 //system("cls");
 	 count++;
 	 if (name != "")
 		 mapNames[count] = name;
@@ -259,7 +258,7 @@ void SaveStatistics(string PlayerName, bool isWin) {
 void Save(int turn) {
 	string slot;
 	Pos2D savePos;
-	savePos.x = maxY * 2 + 40; savePos.y = maxX * 2 + 2;
+	savePos.x = maxY * 2 + 44; savePos.y = maxX * 2 + 2;
 	gotoXY(savePos);
 	cout << "                       ";
 	gotoXY(savePos);
@@ -542,8 +541,8 @@ void drawBoard(int m, int n) {
 }
 void SetCoordForArray() {
 	int x = 2, y = 1;
-	for (int i = 1; i <= 12; i++) {
-		for (int j = 1; j <= 27; j++) {
+	for (int i = 1; i <= maxX; i++) {
+		for (int j = 1; j <= maxY; j++) {
 			coord[i][j].x = x;
 			coord[i][j].y = y;
 			x += 4;
@@ -702,10 +701,10 @@ void NewOrLoad() {
 void HelpMenuInGame() {
 	textColor(7);
 	Pos2D helpPos;
-	helpPos.x = 12;
+	helpPos.x = 9;
 	helpPos.y = 2 * maxX + 2;
 	gotoXY(helpPos);
-	cout << "Use arrow key to move        Space - Go         Double S - Save          Double R - Reset";
+	cout << "Use arrow key to move        Space - Go           S - Save         Double R - Reset";
 }
 
 //For Gameplay
@@ -724,7 +723,7 @@ void Initialize() {
 		Sleep(500);
 	} 
 	//Loading
-	//Loading();
+	Loading();
 	//ChangeToGamePlay
 	ChangeToGameplayScreen();
 
@@ -1698,13 +1697,14 @@ void BotMove(int hard, Pos2D playerMovePos) {
 	case 3:					//Hard
 		int max = 0;
 		Pos2D trytoGo, bettertoGo;
+		for (int his = moveCount; his > 0; his--) {
 			for (int dis = 1; dis <= 5; dis++) {
-				for (int i = -dis; i <= dis; i++) 
+				for (int i = -dis; i <= dis; i++)
 					for (int j = -dis; j <= dis; j++)
-						if (caroTable[playerMovePos.x + i][playerMovePos.y + j] == 0) {
+						if (caroTable[imove[his].x + i][imove[his].y + j] == 0) {
 							//Save the trytoGo position
-							trytoGo.x = playerMovePos.x + i;
-							trytoGo.y = playerMovePos.y + j;
+							trytoGo.x = imove[his].x + i;
+							trytoGo.y = imove[his].y + j;
 							for (int cont = 5; cont > 0; cont--) {
 								if (cont >= max) {
 									if (CheckPWin(1, trytoGo, cont) || CheckBotWin(trytoGo, cont)) {
@@ -1715,7 +1715,8 @@ void BotMove(int hard, Pos2D playerMovePos) {
 								}
 							}
 						}
-				}
+			}
+		}
 		BotWrite(bettertoGo.x, bettertoGo.y);
 	}
 }
